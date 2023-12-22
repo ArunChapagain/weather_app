@@ -10,7 +10,6 @@ import '../../helper/json_reader.dart';
 void main() {
   setUp(() {});
 
-
   const tWeatherModel = WeatherModel(
     cityName: 'New York',
     main: 'Clear',
@@ -40,6 +39,24 @@ void main() {
     expect(result, tWeatherModel);
   });
 
+  test('should return a json map containing the data', () async {
+    // arrange
 
+    // act
+    final result = tWeatherModel.toJson();
+    // assert
 
+    final expectedJsonMap = {
+      "name": "New York",
+      "weather": [
+        {"main": "Clear", "description": "clear sky", "icon": "01d"}
+      ],
+      "main": {
+        "temp": 271.71,
+        "pressure": 1033,
+        "humidity": 56,
+      }
+    };
+    expect(result, expectedJsonMap);
+  });
 }
