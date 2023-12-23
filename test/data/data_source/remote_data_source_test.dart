@@ -2,6 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart ' as http;
 import 'package:mockito/mockito.dart';
 import 'package:weather_app/core/constants/constants.dart';
+import 'package:weather_app/core/error/exception.dart';
 import 'package:weather_app/data/data_source/remote_data_source.dart';
 import 'package:weather_app/data/models/weather_model.dart';
 
@@ -39,6 +40,24 @@ void main() {
 
       expect(result, isA<WeatherModel>());
     });
+
+    test('should throw server exception when the response code is 404 (error)',
+        () async {
+      // arrange
+      when(mockHttpClient
+              .get(Uri.parse(Url.currentWeatherByCityName(tCityName))))
+          .thenAnswer((_) async => http.Response(
+                'Not Found',
+                404,
+              ));
+      // act
+      final result =
+          await weatherRemoteDataSourceImpl.getCurrentWeather(tCityName);
+      // assert
+
+      expect(result, isA<ServerException>());
+    });
+    
   });
 }
 //STUB - a fake implementation of a class that returns a canned response  

@@ -1,7 +1,5 @@
 import 'dart:convert';
-
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/mockito.dart';
 import 'package:weather_app/data/models/weather_model.dart';
 import 'package:weather_app/domain/entities/weather.dart';
 
@@ -32,7 +30,6 @@ void main() {
     final Map<String, dynamic> jsonMap = json.decode(
       readJson('helper\\dummy_data\\dummy_weather_response.json'),
     );
-    print(jsonMap); // to see the jsonMap
 // act
     final result = WeatherModel.fromJson(jsonMap);
 // assert
