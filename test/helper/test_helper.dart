@@ -8,8 +8,6 @@ import 'package:http/http.dart' as http;
     WeatherRepository,
     WeatherRemoteDataSource,
   ],
-  customMocks: [
-    MockSpec<http.Client>(as: #MockHttpClient),
-  ],
+  customMocks: [MockSpec<http.Client>(as: #MockHttpClient)],
 )
 void main() {}
