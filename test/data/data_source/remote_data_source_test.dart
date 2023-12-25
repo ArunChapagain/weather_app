@@ -52,12 +52,11 @@ void main() {
               ));
       // act
       final result =
-          await weatherRemoteDataSourceImpl.getCurrentWeather(tCityName);
+           weatherRemoteDataSourceImpl.getCurrentWeather(tCityName);
       // assert
 
-      expect(result, isA<ServerException>());
+      expect(result, throwsA(isA<ServerException>()));
     });
-    
   });
 }
 //STUB - a fake implementation of a class that returns a canned response  
