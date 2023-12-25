@@ -12,29 +12,28 @@ void main() {
   late WeatherRepositoryImpl weatherRepositoryImpl;
 
   setUp(() {
-    print('object');
     mockWeatherRemoteDataSource = MockWeatherRemoteDataSource();
     weatherRepositoryImpl = WeatherRepositoryImpl(mockWeatherRemoteDataSource);
   });
 
   const tWeatherModel = WeatherModel(
     cityName: 'New York',
-    main: 'Clear',
-    description: 'clear sky',
-    iconCode: '01d',
-    temperature: 271.71,
-    pressure: 1033,
-    humidity: 56,
+    main: 'Clouds',
+    description: 'few clouds',
+    iconCode: '02d',
+    temperature: 302.28,
+    pressure: 1009,
+    humidity: 70,
   );
 
-  const tWeather = WeatherEntity(
+  const tWeatherEntity = WeatherEntity(
     cityName: 'New York',
-    main: 'Clear',
-    description: 'clear sky',
-    iconCode: '01d',
-    temperature: 271.71,
-    pressure: 1033,
-    humidity: 56,
+    main: 'Clouds',
+    description: 'few clouds',
+    iconCode: '02d',
+    temperature: 302.28,
+    pressure: 1009,
+    humidity: 70,
   );
 
   const tCityName = 'New York';
@@ -47,10 +46,13 @@ void main() {
           .thenAnswer((_) async => tWeatherModel);
 
 // act
-      final result = weatherRepositoryImpl.getCurrentWeather(tCityName);
+      final result = await weatherRepositoryImpl.getCurrentWeather(tCityName);
+
+      print(result);
+
 // assert
 
-      expect(result, equals(const Right(tWeather)));
+      expect(result, equals(const Right(tWeatherEntity)));
     });
   });
 }
