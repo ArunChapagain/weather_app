@@ -17,12 +17,12 @@ class WeatherRepositoryImpl extends WeatherRepository {
       String cityName) async {
     try {
       final result = await remoteDataSource.getCurrentWeather(cityName);
-      return Right(result);
+      return Right(result.toEntity());
     } on ServerException {
       return const Left(
           ServerFailure('An error occurred while getting weather data'));
     } on SocketException {
-      return const Left(ServerFailure('No internet connection'));
+      return const Left(ConnectionFailure('No internet connection'));
     }
   }
 }
