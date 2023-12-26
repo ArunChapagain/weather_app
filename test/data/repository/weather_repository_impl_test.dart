@@ -47,9 +47,6 @@ void main() {
 
 // act
       final result = await weatherRepositoryImpl.getCurrentWeather(tCityName);
-
-      print(result);
-
 // assert
 
       expect(result, equals(const Right(tWeatherEntity)));
