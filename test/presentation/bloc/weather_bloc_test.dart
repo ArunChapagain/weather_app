@@ -45,11 +45,12 @@ void main() {
       return weatherBloc;
     },
     act: (bloc) => bloc.add(const OnCityChangedEvent(tCityName)),
+    
     // to make the test wait for the bloc to emit the state
     wait: const Duration(milliseconds: 500),
     expect: () => [
-      WeatherLoading(),
-      const WeatherLoaded(tWeatherEntity),
+      WeatherLoadingState(),
+      const WeatherLoadedState(tWeatherEntity),
     ],
   );
 
@@ -64,8 +65,8 @@ void main() {
     // to make the test wait for the bloc to emit the state
     wait: const Duration(milliseconds: 500),
     expect: () => [
-      WeatherLoading(),
-     const WeatherLoadFailure('Server Failure')
+      WeatherLoadingState(),
+     const WeatherLoadFailureState('Server Failure')
     ],
   );
 }
