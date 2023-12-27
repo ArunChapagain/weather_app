@@ -45,7 +45,6 @@ void main() {
       return weatherBloc;
     },
     act: (bloc) => bloc.add(const OnCityChangedEvent(tCityName)),
-    
     // to make the test wait for the bloc to emit the state
     wait: const Duration(milliseconds: 500),
     expect: () => [
@@ -57,8 +56,10 @@ void main() {
   blocTest(
     'should emit [WeatherLoading ,WeatherLoadFailure] when data fetching fails',
     build: () {
-      when(mockGetCurrentWeatherUseCase.execute(tCityName))//यो method execute  हुदा 
-          .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));// यो return गर्ने
+      when(mockGetCurrentWeatherUseCase
+              .execute(tCityName)) //यो method execute  हुदा
+          .thenAnswer((_) async =>
+              const Left(ServerFailure('Server Failure'))); // यो return गर्ने
       return weatherBloc;
     },
     act: (bloc) => bloc.add(const OnCityChangedEvent(tCityName)),
@@ -66,7 +67,7 @@ void main() {
     wait: const Duration(milliseconds: 500),
     expect: () => [
       WeatherLoadingState(),
-     const WeatherLoadFailureState('Server Failure')
+      const WeatherLoadFailureState('Server Failure')
     ],
   );
 }

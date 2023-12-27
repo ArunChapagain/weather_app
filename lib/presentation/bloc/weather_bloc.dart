@@ -10,11 +10,12 @@ part 'weather_event.dart';
 part 'weather_state.dart';
 
 class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
+
   final GetCurrentWeatherUseCase getCurrentWeatherUseCase;
 
   WeatherBloc(this.getCurrentWeatherUseCase) : super(WeatherInitial()) {
     on<OnCityChangedEvent>(onCityChangedEvent,
-        transformer: debounce(const Duration(milliseconds: 300)));
+        transformer: debounce(const Duration(milliseconds: 500)));
   }
 
   FutureOr<void> onCityChangedEvent(
