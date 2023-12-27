@@ -45,6 +45,7 @@ void main() {
       return weatherBloc;
     },
     act: (bloc) => bloc.add(const OnCityChangedEvent(tCityName)),
+    
     // to make the test wait for the bloc to emit the state
     wait: const Duration(milliseconds: 500),
     expect: () => [
