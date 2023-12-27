@@ -9,21 +9,21 @@ sealed class WeatherState extends Equatable {
 
 final class WeatherInitial extends WeatherState {}
 
-final class WeatherLoading extends WeatherState {}
+final class WeatherLoadingState extends WeatherState {}
 
-final class WeatherLoaded extends WeatherState {
+final class WeatherLoadedState extends WeatherState {
   final WeatherEntity weather;
 
-  const WeatherLoaded(this.weather);
+  const WeatherLoadedState(this.weather);
 
   @override
   List<Object> get props => [weather];
 }
 
-final class WeatherLoadFailure extends WeatherState {
+final class WeatherLoadFailureState extends WeatherState {
   final String message;
 
-  const WeatherLoadFailure(this.message);
+  const WeatherLoadFailureState(this.message);
 
   @override
   List<Object> get props => [message];

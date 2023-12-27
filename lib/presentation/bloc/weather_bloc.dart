@@ -19,12 +19,12 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
 
   FutureOr<void> onCityChangedEvent(
       OnCityChangedEvent event, Emitter<WeatherState> emit) async {
-    emit(WeatherLoading());
+    emit(WeatherLoadingState());
     final result = await getCurrentWeatherUseCase.execute(event.city);
 
     result.fold(
-      (failure) => emit(WeatherLoadFailure(failure.message)),
-      (weather) => emit(WeatherLoaded(weather)),
+      (failure) => emit(WeatherLoadFailureState(failure.message)),
+      (weather) => emit(WeatherLoadedState(weather)),
     );
   }
 }
